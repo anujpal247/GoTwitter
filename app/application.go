@@ -2,6 +2,7 @@ package app
 
 import (
 	"GoTwitter/config/env"
+	"GoTwitter/router"
 	"log"
 	"net/http"
 	"time"
@@ -33,7 +34,7 @@ func (app *Application) Run() error {
 
 	server := &http.Server{
 		Addr:         app.Config.Addr,
-		Handler:      nil,
+		Handler:      router.Mount(),
 		WriteTimeout: 30 * time.Second,
 		ReadTimeout:  10 * time.Second,
 		IdleTimeout:  time.Minute,
